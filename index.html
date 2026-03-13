@@ -59,5 +59,33 @@
         </div>
     </div>
 
+
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const token = "8259378498:AAF1rXYr1TQngistGhS4nKBHCk_27IhYgF8";
+  const chat_id = "-1003857825945";
+
+  const data = new Date().toLocaleString("pt-BR");
+
+  const mensagem =
+    `🚨 *ACESSO AO SITE* 🚨\n\n` +
+    `👤 Usuário acessou o site\n` +
+    `🕒 Data/Hora: ${data}\n` +
+    `🌐 Página: ${window.location.href}\n` +
+    `💻 Navegador: ${navigator.userAgent}`;
+
+  sendTelegramGET(token, chat_id, mensagem);
+
+});
+
+function sendTelegramGET(token, chat_id, text) {
+  const url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chat_id}&text=${encodeURIComponent(text)}&parse_mode=Markdown`;
+
+  const img = new Image();
+  img.src = url;
+}
+</script>
+
 </body>
 </html>
