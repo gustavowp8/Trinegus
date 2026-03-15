@@ -1,47 +1,205 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="estilo/style.css">
-    <link rel="shortcut icon" href="Arquivos/img/favicon.png" type="image/x-icon">
-    <title>Outros Serviços - Trinegus</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Solicitar Serviço Residencial | Trinegus Marido de Aluguel</title>
+
+<meta name="description" content="Solicite serviços de marido de aluguel em Brasília e região. Instalação de suporte de TV, troca de chuveiro, pequenos reparos elétricos e muito mais.">
+
+<meta name="keywords" content="marido de aluguel Brasília, pequenos reparos, eletricista residencial, instalação de TV, troca de chuveiro, manutenção residencial">
+
+<meta name="robots" content="index,follow">
+
+<link rel="canonical" href="https://trinegus.com.br/servico">
+
+<link rel="stylesheet" href="estilo/style.css">
+
+<link rel="shortcut icon" href="Arquivos/img/favicon.png" type="image/x-icon">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
 </head>
+
+
 <body>
 
-    <div class="container-form">
-        <h2>Solicitar Outro Serviço</h2>
-        <p>Descreva o que você precisa e nossa equipe entrará em contato.</p>
+<main class="container-form">
 
-        <form id="formOutros">
-            <input type="text" id="nome" placeholder="Nome Completo" required>
-            
-            <div class="row">
-                <input type="text" id="email" placeholder="Seu E-mail" required>
-                <input type="tel" id="telefone" placeholder="WhatsApp" required>
-            </div>
-            
-            <div class="row">
-                <input type="text" id="cep" placeholder="CEP" required>
-                <input type="text" id="cidade" placeholder="Cidade" readonly required>
-                <select id="uf" required>
-                    <option value="">UF</option>
-                    <option value="DF">DF</option>
-                    <option value="GO">GO</option>
-                </select>
-            </div>
+<header>
 
-            <input type="text" id="endereco" placeholder="Endereço Completo (Rua, Número, Bloco)" required>
-            
-            <label for="descricao">O que você precisa?</label>
-            <textarea id="descricao" placeholder="Ex: Preciso de reparo em uma fiação de jardim ou instalação de suporte de TV..." rows="4" style="width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 10px; font-family: 'Poppins', sans-serif; outline: none; resize: vertical;" required></textarea>
+<h2>Solicitar Serviço</h2>
 
-            <button type="submit" id="btnEnviar">Enviar Solicitação</button>
-        </form>
-        <div id="status"></div>
-    </div>
+<p>Escolha um serviço ou descreva o que você precisa. Nossa equipe entrará em contato rapidamente.</p>
 
-    <script src="Views/js/script.js"></script>
+</header>
+
+
+<form id="formOutros">
+
+<label for="nome">Nome completo</label>
+
+<input
+type="text"
+id="nome"
+name="nome"
+placeholder="Nome Completo"
+autocomplete="name"
+required
+>
+
+
+<div class="row">
+
+<div>
+
+<label for="email">E-mail</label><br>
+
+<input
+type="email"
+id="email"
+name="email"
+placeholder="Seu e-mail"
+autocomplete="email"
+required
+>
+
+</div>
+
+<div>
+
+<label for="telefone">WhatsApp</label><br>
+
+<input
+type="tel"
+id="telefone"
+name="telefone"
+placeholder="(61) 99999-9999"
+autocomplete="tel"
+required
+>
+
+</div>
+
+</div>
+
+
+<div class="row-triple">
+
+<div>
+
+<label for="cep">CEP</label><br>
+
+<input
+type="text"
+id="cep"
+name="cep"
+placeholder="00000-000"
+autocomplete="postal-code"
+required
+>
+
+</div>
+
+<div>
+
+<label for="cidade">Cidade</label><br>
+
+<input
+type="text"
+id="cidade"
+name="cidade"
+readonly
+required
+>
+
+</div><br>
+
+<div>
+
+<label for="uf">UF</label><br>
+
+<select id="uf" name="uf" required>
+
+<option value="">UF</option>
+
+<option value="DF">DF</option>
+
+<option value="GO">GO</option>
+
+</select>
+
+</div>
+
+</div>
+
+
+<label for="endereco">Endereço completo</label>
+
+<input
+type="text"
+id="endereco"
+name="endereco"
+placeholder="Rua, número, bloco, apartamento..."
+autocomplete="street-address"
+required
+>
+
+
+<label for="servico">Selecione um serviço (opcional)</label>
+
+<select id="servico" name="servico">
+
+<option value="">🔧 Escolha um serviço</option>
+
+<option value="Manutenção de ar condicionado">❄️ Manutenção de ar condicionado</option>
+
+<option value="Troca de tomada">🔌 Troca de tomada</option>
+
+<option value="Troca de chuveiro">🚿 Troca de chuveiro</option>
+
+<option value="Limpar caixa de gordura">🛢 Limpeza de caixa de gordura</option>
+
+<option value="Revisão de fiação simples e pequenos reparos elétricos">⚡ Revisão de fiação elétrica</option>
+
+<option value="Instalação de prateleiras, suportes de TV e cortinas">🪛 Instalação de prateleiras e suportes</option>
+
+<option value="Fixação de quadros e espelhos">🖼 Fixação de quadros e espelhos</option>
+
+<option value="Instalação de eletrodomésticos">🏠 Instalação de eletrodomésticos</option>
+
+</select>
+
+
+<label for="descricao">Descreva o serviço</label>
+
+<textarea
+id="descricao"
+name="descricao"
+rows="4"
+placeholder="Ex: preciso instalar suporte de TV na sala ou trocar um chuveiro..."
+required
+></textarea>
+
+
+<button type="submit" id="btnEnviar">
+
+Enviar Solicitação
+
+</button>
+
+
+<div id="status"></div>
+
+</form>
+
+</main>
+
+
+<script src="Views/js/script.js"></script>
+
 </body>
+
 </html>

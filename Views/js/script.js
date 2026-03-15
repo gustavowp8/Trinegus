@@ -461,83 +461,183 @@ document.addEventListener("DOMContentLoaded", () => {
 /* Outros */
 
 document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("formOutros");
-  const cepInput = document.getElementById("cep");
-  const cidadeInput = document.getElementById("cidade");
-  const ufSelect = document.getElementById("uf");
 
-  // BUSCA CEP AUTOMÁTICA
-  cepInput.addEventListener("blur", async function () {
-    const cep = cepInput.value.replace(/\D/g, "");
-    if (cep.length !== 8) return;
-    try {
-      const resp = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
-      const data = await resp.json();
-      if (!data.erro) {
-        cidadeInput.value = data.localidade;
-        ufSelect.value = data.uf;
-      }
-    } catch (err) {
-      console.error("Erro ao buscar CEP:", err);
+const form = document.getElementById("formOutros");
+const cepInput = document.getElementById("cep");
+const cidadeInput = document.getElementById("cidade");
+const ufSelect = document.getElementById("uf");
+const servicoSelect = document.getElementById("servico");
+const descricaoInput = document.getElementById("descricao");
+const telefoneInput = document.getElementById("telefone");
+
+
+// =========================
+// AUTO COMPLETAR DESCRIÇÃO
+// =========================
+
+servicoSelect.addEventListener("change", () => {
+
+    if(servicoSelect.value !== "" && descricaoInput.value === ""){
+        descricaoInput.value = servicoSelect.value;
     }
-  });
 
-  // ENVIO TELEGRAM
-  form.addEventListener("submit", async function (e) {
-    e.preventDefault();
+});
 
-    const btn = document.getElementById("btnEnviar");
-    const status = document.getElementById("status");
 
-    const nome = document.getElementById("nome").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const telefone = document.getElementById("telefone").value.trim();
-    const cep = cepInput.value.trim();
-    const cidade = cidadeInput.value.trim();
-    const uf = ufSelect.value;
-    const endereco = document.getElementById("endereco").value.trim();
-    const descricao = document.getElementById("descricao").value.trim();
+// =========================
+// MASCARA CEP
+// =========================
 
-    const token = "8259378498:AAF1rXYr1TQngistGhS4nKBHCk_27IhYgF8";
-    const chat_id = "-1003857825945";
+cepInput.addEventListener("input", () => {
 
-    const mensagem =
-      `📝 *SOLICITAÇÃO DE SERVIÇO PERSONALIZADO* 📝\n\n` +
-      `👤 *Cliente:* ${nome}\n` +
-      `📧 *E-mail:* ${email}\n` +
-      `📞 *Telefone:* ${telefone}\n` +
-      `🏙️ *Local:* ${cidade} - ${uf} (CEP: ${cep})\n` +
-      `📍 *Endereço:* ${endereco}\n\n` +
-      `📋 *DESCRIÇÃO DO SERVIÇO:* \n"${descricao}"`;
+    cepInput.value = cepInput.value
+    .replace(/\D/g,"")
+    .replace(/(\d{5})(\d)/,"$1-$2")
+    .slice(0,9);
 
-    btn.disabled = true;
-    btn.innerText = "Enviando...";
+});
 
-    try {
-      await sendTelegramGET(token, chat_id, mensagem);
 
-      form.innerHTML = `
-        <div style="text-align: center; padding: 20px;">
-          <div style="font-size: 50px; color: #6c757d; margin-bottom: 20px;">✉️</div>
-          <h3>Solicitação enviada com sucesso!</h3>
-          <p>Olá ${nome.split(" ")[0]}, recebemos seu pedido. <b>Em breve entraremos em contato</b> para entender melhor sua necessidade e passar um orçamento.</p>
-        </div>
-      `;
-    } catch (err) {
-      status.innerHTML = "<span style='color: red;'>Erro ao enviar. Tente novamente.</span>";
-      btn.disabled = false;
-      btn.innerText = "Enviar Solicitação";
-    }
-  });
+// =========================
+// MASCARA TELEFONE
+// =========================
 
-  function sendTelegramGET(token, chat_id, text) {
-    const url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chat_id}&text=${encodeURIComponent(text)}&parse_mode=Markdown`;
-    return new Promise((resolve) => {
-      const img = new Image();
-      img.onload = () => resolve(true);
-      img.onerror = () => resolve(true);
-      img.src = url;
-      setTimeout(() => resolve(true), 1200);
-    });
-  }
+telefoneInput.addEventListener("input", () => {
+
+    telefoneInput.value = telefoneInput.value
+    .replace(/\D/g,"")
+    .replace(/^(\d{2})(\d)/g,"($1) $2")
+    .replace(/(\d{5})(\d)/,"$1-$2")
+    .slice(0,15);
+
+});
+
+
+// =========================
+// BUSCAR CEP
+// =========================
+
+cepInput.addEventListener("blur", async () => {
+
+const cep = cepInput.value.replace(/\D/g,"");
+
+if(cep.length !== 8) return;
+
+cidadeInput.value = "Buscando...";
+
+try{
+
+const resp = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+const data = await resp.json();
+
+if(!data.erro){
+
+cidadeInput.value = data.localidade;
+ufSelect.value = data.uf;
+
+}else{
+
+cidadeInput.value = "";
+alert("CEP não encontrado.");
+
+}
+
+}catch(err){
+
+console.error("Erro ao buscar CEP:",err);
+cidadeInput.value = "";
+
+}
+
+});
+
+
+// =========================
+// ENVIO TELEGRAM
+// =========================
+
+form.addEventListener("submit", async (e) => {
+
+e.preventDefault();
+
+const btn = document.getElementById("btnEnviar");
+const status = document.getElementById("status");
+
+const nome = document.getElementById("nome").value.trim();
+const email = document.getElementById("email").value.trim();
+const telefone = telefoneInput.value.trim();
+const cep = cepInput.value.trim();
+const cidade = cidadeInput.value.trim();
+const uf = ufSelect.value;
+const endereco = document.getElementById("endereco").value.trim();
+const descricao = descricaoInput.value.trim();
+const servico = servicoSelect.value;
+
+const token = "8259378498:AAF1rXYr1TQngistGhS4nKBHCk_27IhYgF8";
+const chat_id = "-1003857825945";
+
+const mensagem =
+`🛠 *SOLICITAÇÃO DE SERVIÇO*\n\n` +
+`👤 *Cliente:* ${nome}\n` +
+`📧 *E-mail:* ${email}\n` +
+`📞 *WhatsApp:* ${telefone}\n\n` +
+`📍 *Endereço:* ${endereco}\n` +
+`🏙️ *Cidade:* ${cidade} - ${uf}\n` +
+`📮 *CEP:* ${cep}\n\n` +
+`🔧 *Serviço selecionado:* ${servico || "Não selecionado"}\n\n` +
+`📋 *Descrição:* \n${descricao}`;
+
+
+btn.disabled = true;
+btn.innerText = "Enviando...";
+
+try{
+
+await sendTelegramGET(token, chat_id, mensagem);
+
+form.innerHTML = `
+<div style="text-align:center;padding:30px;">
+<div style="font-size:60px;margin-bottom:10px;">✅</div>
+<h3>Solicitação enviada!</h3>
+<p>Olá ${nome.split(" ")[0]}, recebemos seu pedido.</p>
+<p>Em breve nossa equipe entrará em contato.</p>
+</div>
+`;
+
+}catch{
+
+status.innerHTML = "<span style='color:red'>Erro ao enviar. Tente novamente.</span>";
+
+btn.disabled = false;
+btn.innerText = "Enviar Solicitação";
+
+}
+
+});
+
+
+// =========================
+// FUNÇÃO TELEGRAM
+// =========================
+
+function sendTelegramGET(token, chat_id, text){
+
+const url =
+`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chat_id}&text=${encodeURIComponent(text)}&parse_mode=Markdown`;
+
+return new Promise((resolve) => {
+
+const img = new Image();
+
+img.onload = () => resolve(true);
+img.onerror = () => resolve(true);
+
+img.src = url;
+
+setTimeout(() => resolve(true),1200);
+
+});
+
+}
+
 });

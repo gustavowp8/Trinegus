@@ -282,6 +282,51 @@ textarea {
     }
 }
 
+/* Campos dentro das linhas */
+.row > div,
+.row-triple > div {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Linha com 2 campos */
+.row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+}
+
+/* Linha com 3 campos */
+.row-triple {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+}
+
+/* Desktop / Tablet */
+@media (min-width: 600px) {
+
+    .row {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .row-triple {
+        grid-template-columns: 1fr 2fr 1fr;
+    }
+
+}
+
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    font-family: 'Poppins', sans-serif;
+    outline: none;
+    resize: vertical;
+}
+
+
 @media (min-width: 480px) {
     .row-triple {
         grid-template-columns: 1fr 2fr 1fr; /* CEP, Cidade, UF */
