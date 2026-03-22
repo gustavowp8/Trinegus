@@ -2,86 +2,162 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="caminho/para/sua/logo.png">
+    <link rel="stylesheet" href="estilo/info.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="estilo/style.css">
-    <link rel="shortcut icon" href="Arquivos/img/favicon.png" type="image/x-icon">
-    <title>Manutenção de Computadores - Trinegus</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <style>
-        .servicos-lista { text-align: left; margin: 20px 0; }
-        .item-servico {
-            display: flex;
-            align-items: center;
-            padding: 10px;
-            border: 1px solid #eee;
-            border-radius: 8px;
-            margin-bottom: 8px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .item-servico:hover { background-color: #f0f7ff; }
-        .item-servico input { margin-right: 15px; width: auto; }
-        .item-servico label { cursor: pointer; flex-grow: 1; font-size: 0.9rem; margin-bottom: 0; }
-        .total-container {
-            background: #333;
-            color: white;
-            padding: 15px;
-            border-radius: 10px;
-            margin-top: 10px;
-            font-size: 1.2rem;
-            font-weight: bold;
-        }
-    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Space+Mono&display=swap" rel="stylesheet">
+    <title>Trinegus Informática</title>
 </head>
 <body>
-
-    <div class="container-form">
-        <h2>Manutenção de Computadores</h2>
-        <p>Selecione os serviços desejados:</p>
-
-        <form id="formPC">
-            <div class="servicos-lista">
-                <div class="item-servico">
-                    <input type="checkbox" class="servico-check" data-preco="100" value="Formatação (Win/Linux)" id="s1">
-                    <label for="s1">Formatação Windows/Linux - <b>R$ 100</b></label>
-                </div>
-                <div class="item-servico">
-                    <input type="checkbox" class="servico-check" data-preco="140" value="Limpeza + Pasta Térmica" id="s2">
-                    <label for="s2">Limpeza e Pasta Térmica - <b>R$ 140</b></label>
-                </div>
-                <div class="item-servico">
-                    <input type="checkbox" class="servico-check" data-preco="250" value="Manutenção Completa" id="s3">
-                    <label for="s3">Manutenção Completa (Tudo) - <b>R$ 250</b></label>
-                </div>
-                <div class="item-servico">
-                    <input type="checkbox" class="servico-check" data-preco="350" value="Programas Corporativos" id="s4">
-                    <label for="s4">Programas (Office/Antivírus/ERP) - <b>R$ 350</b></label>
-                </div>
-                <div class="item-servico">
-                    <input type="checkbox" class="servico-check" data-preco="470" value="Rede e Impressoras" id="s5">
-                    <label for="s5">Compartilhamento Rede/Imp. - <b>R$ 470</b></label>
-                </div>
-                <div class="item-servico">
-                    <input type="checkbox" class="servico-check" data-preco="150" value="Troca Periféricos (SSD/RAM)" id="s6">
-                    <label for="s6">Upgrade (SSD/Memória) - <b>R$ 150</b></label>
-                </div>
-            </div>
-
-            <div class="total-container">
-                Total: R$ <span id="valorTotal">0</span>,00
-            </div>
-
-            <hr>
-            
-            <input type="text" id="nome" placeholder="Nome Completo" required>
-            <input type="tel" id="telefone" placeholder="WhatsApp" required>
-            <input type="text" id="endereco" placeholder="Endereço/Bairro" required>
-
-            <button type="submit" id="btnEnviar">Solicitar Manutenção</button>
-        </form>
-        <div id="status"></div>
+    
+<header id="header">
+    <div class="logo-container">
+        
+        <a id="logo" href="#">Trinegus Info</a>
     </div>
 
-    <script src="Views/js/script.js"></script>
+    <nav id="nav">
+        <button id="btn-mobile">
+            <span id="hamburger"></span>
+        </button>
+
+        <ul id="menu">
+            <li><a href="#tecnico">Técnico</a></li>
+            <li><a href="#programador">Programador .NET</a></li>
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#contato">Contato</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main class="content-container">
+    <section id="hero">
+    <div class="hero-text">
+        <img class="meulogo" src="Arquivos/img/info.png" alt="">
+        <h1>Soluções Tecnológicas Completas</h1>
+        <p>Do hardware ao software, a Trinegus é sua parceira em TI.</p>
+        <button id="openModal" class="btn-neon">Contrate um serviço</button>
+    </div>
+</section>
+
+<div id="modalServico" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Solicitar Orçamento</h2>
+        <form id="formTelegram">
+            <input type="text" id="nome" placeholder="Nome Completo" required>
+            <input type="email" id="email" placeholder="E-mail" required>
+            <input type="tel" id="whatsapp" placeholder="Telefone WhatsApp" required>
+            
+            <select id="servico" required>
+                <option value="" disabled selected>Selecione o serviço</option>
+                <option value="Suporte Técnico">Suporte Técnico / Manutenção</option>
+                <option value="Hardware">Hardware / Montagem</option>
+                <option value="Redes">Redes e Conectividade</option>
+                <option value="Desenvolvimento .NET">Desenvolvimento .NET / Web</option>
+                <option value="Consultoria">Consultoria em TI</option>
+            </select>
+
+            <textarea id="descricao" placeholder="Descreva o que você precisa (opcional)" rows="4"></textarea>
+            
+            <button type="submit" id="btnEnviar">Enviar Solicitação</button>
+        </form>
+        <div id="statusMensagem"></div>
+    </div>
+</div>
+
+    <div class="services-grid">
+        <section id="tecnico" class="service-card">
+            <h2>🖥️ Técnico em Informática</h2>
+            
+            <div class="sub-service">
+                <h3>Suporte e Manutenção</h3>
+                <ul>
+                    <li>Instalação e configuração de sistemas operacionais (Windows, Linux, etc.)</li>
+                    <li>Formatação e otimização de computadores</li>
+                    <li>Remoção de vírus, malware e spyware</li>
+                    <li>Backup e recuperação de dados</li>
+                </ul>
+            </div>
+
+            <div class="sub-service">
+                <h3>Hardware</h3>
+                <ul>
+                    <li>Montagem e upgrade de computadores</li>
+                    <li>Diagnóstico e substituição de peças (HD, SSD, memória, placa-mãe, fonte)</li>
+                    <li>Manutenção preventiva (limpeza física, troca de pasta térmica)</li>
+                </ul>
+            </div>
+
+            <div class="sub-service">
+                <h3>Redes e Conectividade</h3>
+                <ul>
+                    <li>Configuração de redes locais (LAN/Wi-Fi)</li>
+                    <li>Instalação e configuração de roteadores e switches</li>
+                    <li>Diagnóstico e solução de problemas de rede</li>
+                    <li>Segurança de rede (firewall, controle de acesso)</li>
+                </ul>
+            </div>
+
+            <div class="sub-service">
+                <h3>Serviços Corporativos</h3>
+                <ul>
+                    <li>Suporte técnico remoto</li>
+                    <li>Inventário e gestão de equipamentos</li>
+                    <li>Treinamento básico para usuários</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="programador" class="service-card">
+            <h2>💻 Programador .NET</h2>
+            
+            <div class="sub-service">
+                <h3>Desenvolvimento de Software</h3>
+                <ul>
+                    <li>Criação de sistemas desktop com Windows Forms ou WPF</li>
+                    <li>Desenvolvimento de aplicações web com ASP.NET Core / MVC</li>
+                    <li>APIs RESTful e integração entre sistemas</li>
+                    <li>Automação de processos internos</li>
+                </ul>
+            </div>
+
+            <div class="sub-service">
+                <h3>Banco de Dados</h3>
+                <ul>
+                    <li>Modelagem e implementação de bancos de dados (SQL Server, MySQL, PostgreSQL)</li>
+                    <li>Criação de procedures, triggers e consultas otimizadas</li>
+                    <li>Integração de sistemas com bancos de dados</li>
+                </ul>
+            </div>
+
+            <div class="sub-service">
+                <h3>Aplicações Empresariais</h3>
+                <ul>
+                    <li>ERP, CRM e sistemas sob medida</li>
+                    <li>Integração com serviços externos (pagamentos, logística, etc.)</li>
+                    <li>Relatórios e dashboards personalizados</li>
+                </ul>
+            </div>
+
+            <div class="sub-service">
+                <h3>Cloud e DevOps</h3>
+                <ul>
+                    <li>Deploy de aplicações em Azure</li>
+                    <li>Integração contínua (CI/CD) com GitHub Actions ou Azure DevOps</li>
+                    <li>Monitoramento e manutenção de aplicações em nuvem</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+</main>
+
+<footer class="main-footer">
+    <p>&copy; 2023 Trinegus Informática. Todos os direitos reservados.</p>
+</footer>
+
+<script src="Views/info.js"></script>
 </body>
 </html>
