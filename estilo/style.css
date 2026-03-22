@@ -243,6 +243,10 @@ textarea {
     border-color: #0056b3;
 }
 
+.info{
+    width: 150px;
+}
+
 /* Botão WhatsApp */
 .footer-contato {
     margin-top: 40px;
