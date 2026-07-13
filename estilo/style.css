@@ -1,344 +1,1494 @@
-body {
+```css
+/* =========================================================
+   TRINEGUS SERVIÇOS
+   Arquivo: estilo/style.css
+   ========================================================= */
+
+
+/* =========================================================
+   1. VARIÁVEIS
+   ========================================================= */
+
+:root {
+    --cor-primaria: #0056b3;
+    --cor-primaria-escura: #003f85;
+    --cor-primaria-clara: #eaf3ff;
+
+    --cor-secundaria: #ffb703;
+    --cor-secundaria-clara: #fff7d6;
+
+    --cor-whatsapp: #25d366;
+    --cor-whatsapp-escura: #128c7e;
+
+    --cor-texto: #252b33;
+    --cor-texto-secundario: #657080;
+    --cor-titulo: #17202a;
+
+    --cor-fundo: #f4f7fb;
+    --cor-fundo-claro: #f9fbfd;
+    --cor-branca: #ffffff;
+
+    --cor-borda: #e3e8ef;
+    --cor-borda-forte: #d3dae5;
+
+    --cor-sucesso: #198754;
+
+    --sombra-suave: 0 8px 24px rgba(28, 43, 64, 0.07);
+    --sombra-media: 0 14px 35px rgba(28, 43, 64, 0.12);
+    --sombra-forte: 0 20px 45px rgba(28, 43, 64, 0.16);
+
+    --raio-pequeno: 10px;
+    --raio-medio: 16px;
+    --raio-grande: 24px;
+    --raio-redondo: 999px;
+
+    --transicao: 0.25s ease;
+}
+
+
+/* =========================================================
+   2. RESET E CONFIGURAÇÕES GERAIS
+   ========================================================= */
+
+* {
     margin: 0;
     padding: 0;
-    font-family: 'Poppins', sans-serif;
-    background-color: #ffffff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 20px;
+}
+
+body {
     min-height: 100vh;
-    text-align: center;
+    font-family: "Poppins", sans-serif;
+    background:
+        radial-gradient(
+            circle at top left,
+            rgba(0, 86, 179, 0.08),
+            transparent 420px
+        ),
+        var(--cor-fundo);
+    color: var(--cor-texto);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
 }
 
-.container {
-    width: 90%;
-    max-width: 400px;
-}
-
-.logo img {
-    width: 280px; /* Ajustado para parecer mais com a proporção da imagem */
-    margin-bottom: 20px;
-}
-
-h2 {
-    color: #333;
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-    font-weight: 400;
-}
-
-.menu-servicos {
-    display: flex;
-    flex-direction: column;
-    gap: 15px; /* Espaço entre os botões */
-}
-
-.btn {
-    text-decoration: none;
-    color: #555;
-    font-size: 1.1rem;
-    padding: 12px 20px;
-    border: 3px solid #0056b3; /* Azul escuro da borda */
-    border-radius: 15px; /* Bordas arredondadas */
-    background-color: #f9f9f9;
-    transition: all 0.3s ease;
+img {
+    max-width: 100%;
+    height: auto;
     display: block;
 }
 
-/* Efeito ao passar o mouse */
-.btn:hover {
-    background-color: #0056b3;
-    color: white;
+a {
+    color: inherit;
 }
 
-/* ... manter o CSS anterior ... */
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
+}
+
+section {
+    scroll-margin-top: 20px;
+}
+
+strong {
+    font-weight: 700;
+}
+
+::selection {
+    background-color: var(--cor-primaria);
+    color: var(--cor-branca);
+}
+
+
+/* =========================================================
+   3. CONTAINER PRINCIPAL
+   ========================================================= */
+
+.container-principal {
+    width: min(94%, 1080px);
+    margin: 0 auto;
+    padding: 35px 0 80px;
+}
+
+
+/* =========================================================
+   4. LOGO
+   ========================================================= */
+
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 26px;
+}
+
+.logo a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.logo img {
+    width: min(280px, 78vw);
+    object-fit: contain;
+    transition:
+        transform var(--transicao),
+        opacity var(--transicao);
+}
+
+.logo a:hover img {
+    transform: scale(1.02);
+}
+
+.logo a:focus-visible {
+    outline: 3px solid rgba(0, 86, 179, 0.25);
+    outline-offset: 6px;
+    border-radius: var(--raio-pequeno);
+}
+
+
+/* =========================================================
+   5. HERO PRINCIPAL
+   ========================================================= */
+
+.hero-text {
+    position: relative;
+    overflow: hidden;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0, 86, 179, 0.98),
+            rgba(0, 63, 133, 0.96)
+        );
+    color: var(--cor-branca);
+    padding: 52px;
+    border-radius: var(--raio-grande);
+    box-shadow: var(--sombra-media);
+    text-align: left;
+}
+
+.hero-text::before {
+    content: "";
+    position: absolute;
+    width: 280px;
+    height: 280px;
+    top: -130px;
+    right: -90px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.hero-text::after {
+    content: "";
+    position: absolute;
+    width: 170px;
+    height: 170px;
+    bottom: -90px;
+    right: 130px;
+    border-radius: 50%;
+    background: rgba(255, 183, 3, 0.13);
+}
+
+.hero-text > * {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-etiqueta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 18px;
+    padding: 8px 15px;
+    border: 1px solid rgba(255, 255, 255, 0.24);
+    border-radius: var(--raio-redondo);
+    background-color: rgba(255, 255, 255, 0.11);
+    font-size: 0.79rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+.hero-etiqueta::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background-color: var(--cor-secundaria);
+    box-shadow: 0 0 0 5px rgba(255, 183, 3, 0.16);
+}
+
+.hero-text h1 {
+    max-width: 760px;
+    margin-bottom: 18px;
+    color: var(--cor-branca);
+    font-size: clamp(2rem, 5vw, 3.55rem);
+    line-height: 1.13;
+    letter-spacing: -0.045em;
+}
+
+.hero-text p {
+    max-width: 790px;
+    margin-bottom: 10px;
+    color: rgba(255, 255, 255, 0.88);
+    font-size: 1.02rem;
+}
+
+.hero-text p strong {
+    color: var(--cor-branca);
+}
+
+.hero-acoes {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 13px;
+    margin-top: 28px;
+}
+
+
+/* =========================================================
+   6. BOTÕES GERAIS
+   ========================================================= */
+
+.btn-whatsapp,
+.btn-secundario {
+    min-height: 50px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 13px 22px;
+    border: 0;
+    border-radius: var(--raio-redondo);
+    text-decoration: none;
+    font-size: 0.94rem;
+    font-weight: 700;
+    line-height: 1.2;
+    transition:
+        background-color var(--transicao),
+        color var(--transicao),
+        transform var(--transicao),
+        box-shadow var(--transicao),
+        border-color var(--transicao);
+}
+
+.btn-whatsapp {
+    background-color: var(--cor-whatsapp);
+    color: var(--cor-branca);
+    box-shadow: 0 9px 22px rgba(37, 211, 102, 0.28);
+}
+
+.btn-whatsapp:hover {
+    background-color: var(--cor-whatsapp-escura);
+    color: var(--cor-branca);
+    transform: translateY(-2px);
+    box-shadow: 0 13px 28px rgba(37, 211, 102, 0.34);
+}
+
+.btn-secundario {
+    border: 1px solid rgba(255, 255, 255, 0.36);
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--cor-branca);
+}
+
+.btn-secundario:hover {
+    border-color: rgba(255, 255, 255, 0.68);
+    background-color: rgba(255, 255, 255, 0.18);
+    color: var(--cor-branca);
+    transform: translateY(-2px);
+}
+
+.btn-whatsapp:focus-visible,
+.btn-secundario:focus-visible,
+.link-destaque:focus-visible,
+.card-btn:focus-visible,
+.footer-telefone:focus-visible {
+    outline: 3px solid rgba(255, 183, 3, 0.56);
+    outline-offset: 4px;
+}
+
+
+/* =========================================================
+   7. BENEFÍCIOS
+   ========================================================= */
+
+.beneficios {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    margin: 22px 0 48px;
+}
+
+.beneficio-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-width: 0;
+    padding: 19px;
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio-medio);
+    background-color: var(--cor-branca);
+    box-shadow: var(--sombra-suave);
+    transition:
+        transform var(--transicao),
+        box-shadow var(--transicao),
+        border-color var(--transicao);
+}
+
+.beneficio-item:hover {
+    transform: translateY(-3px);
+    border-color: rgba(0, 86, 179, 0.28);
+    box-shadow: var(--sombra-media);
+}
+
+.beneficio-item > i {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    border-radius: 14px;
+    background-color: var(--cor-primaria-clara);
+    color: var(--cor-primaria);
+    font-size: 1.2rem;
+}
+
+.beneficio-item div {
+    min-width: 0;
+}
+
+.beneficio-item strong {
+    display: block;
+    margin-bottom: 2px;
+    color: var(--cor-titulo);
+    font-size: 0.91rem;
+}
+
+.beneficio-item span {
+    display: block;
+    color: var(--cor-texto-secundario);
+    font-size: 0.75rem;
+    line-height: 1.45;
+}
+
+
+/* =========================================================
+   8. DESTAQUE SERVIÇOS ELÉTRICOS
+   ========================================================= */
+
+.destaque-eletrica {
+    position: relative;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 27px;
+    margin-bottom: 60px;
+    padding: 34px;
+    border: 1px solid #f0dc9a;
+    border-radius: var(--raio-grande);
+    background:
+        linear-gradient(
+            135deg,
+            var(--cor-secundaria-clara),
+            #ffffff
+        );
+    box-shadow: var(--sombra-suave);
+}
+
+.destaque-eletrica::after {
+    content: "\f0e7";
+    position: absolute;
+    right: -15px;
+    bottom: -55px;
+    color: rgba(255, 183, 3, 0.1);
+    font-family: "Font Awesome 6 Free";
+    font-size: 180px;
+    font-weight: 900;
+    transform: rotate(-12deg);
+}
+
+.destaque-eletrica-icone,
+.destaque-eletrica-conteudo {
+    position: relative;
+    z-index: 1;
+}
+
+.destaque-eletrica-icone {
+    width: 86px;
+    height: 86px;
+    display: grid;
+    place-items: center;
+    border-radius: 24px;
+    background-color: var(--cor-secundaria);
+    color: #4d3500;
+    box-shadow: 0 12px 28px rgba(255, 183, 3, 0.29);
+    font-size: 2.25rem;
+}
+
+.destaque-subtitulo {
+    display: block;
+    margin-bottom: 5px;
+    color: #806000;
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.destaque-eletrica h2 {
+    margin-bottom: 8px;
+    color: var(--cor-titulo);
+    font-size: clamp(1.55rem, 4vw, 2.15rem);
+    line-height: 1.2;
+}
+
+.destaque-eletrica p {
+    max-width: 710px;
+    margin-bottom: 15px;
+    color: var(--cor-texto-secundario);
+    font-size: 0.94rem;
+}
+
+.link-destaque {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    color: var(--cor-primaria);
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.link-destaque i {
+    font-size: 0.78rem;
+    transition: transform var(--transicao);
+}
+
+.link-destaque:hover {
+    color: var(--cor-primaria-escura);
+}
+
+.link-destaque:hover i {
+    transform: translateX(5px);
+}
+
+
+/* =========================================================
+   9. TÍTULOS DE SEÇÃO
+   ========================================================= */
+
+.titulo-secao {
+    max-width: 720px;
+    margin: 0 auto 28px;
+    text-align: center;
+}
+
+.titulo-secao > span {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--cor-primaria);
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.titulo-secao h2 {
+    margin-bottom: 10px;
+    color: var(--cor-titulo);
+    font-size: clamp(1.75rem, 4vw, 2.45rem);
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+}
+
+.titulo-secao p {
+    color: var(--cor-texto-secundario);
+    font-size: 0.93rem;
+}
+
+
+/* =========================================================
+   10. SEÇÃO DE SERVIÇOS
+   ========================================================= */
+
+.secao-servicos {
+    margin-bottom: 62px;
+}
+
+.grid-servicos {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 15px;
+}
+
+.card-btn {
+    position: relative;
+    min-height: 125px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 16px;
+    overflow: hidden;
+    padding: 22px;
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio-medio);
+    background-color: var(--cor-branca);
+    color: var(--cor-texto);
+    text-decoration: none;
+    box-shadow: var(--sombra-suave);
+    transition:
+        transform var(--transicao),
+        box-shadow var(--transicao),
+        border-color var(--transicao),
+        background-color var(--transicao);
+}
+
+.card-btn::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 4px;
+    background-color: var(--cor-primaria);
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform var(--transicao);
+}
+
+.card-btn:hover {
+    transform: translateY(-5px);
+    border-color: rgba(0, 86, 179, 0.32);
+    background-color: #fcfdff;
+    box-shadow: var(--sombra-media);
+}
+
+.card-btn:hover::before {
+    transform: scaleY(1);
+}
+
+.card-icone {
+    width: 54px;
+    height: 54px;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    border-radius: 15px;
+    background-color: var(--cor-primaria-clara);
+    color: var(--cor-primaria);
+    font-size: 1.35rem;
+    transition:
+        transform var(--transicao),
+        background-color var(--transicao),
+        color var(--transicao);
+}
+
+.card-btn:hover .card-icone {
+    transform: scale(1.06);
+    background-color: var(--cor-primaria);
+    color: var(--cor-branca);
+}
+
+.card-conteudo {
+    min-width: 0;
+}
+
+.card-conteudo span {
+    display: block;
+    margin-bottom: 4px;
+    color: var(--cor-titulo);
+    font-size: 0.92rem;
+    font-weight: 700;
+    line-height: 1.35;
+}
+
+.card-conteudo small {
+    display: block;
+    color: var(--cor-texto-secundario);
+    font-size: 0.75rem;
+    line-height: 1.45;
+}
+
+.card-seta {
+    color: #a9b3c0;
+    font-size: 0.8rem;
+    transition:
+        color var(--transicao),
+        transform var(--transicao);
+}
+
+.card-btn:hover .card-seta {
+    color: var(--cor-primaria);
+    transform: translateX(4px);
+}
+
+
+/* Card especial de eletricista */
+
+.card-eletricista {
+    border-color: #efda95;
+    background:
+        linear-gradient(
+            135deg,
+            #fffdf5,
+            var(--cor-branca)
+        );
+}
+
+.card-eletricista::before {
+    background-color: var(--cor-secundaria);
+}
+
+.card-eletricista .card-icone {
+    background-color: var(--cor-secundaria-clara);
+    color: #b17800;
+}
+
+.card-eletricista:hover {
+    border-color: var(--cor-secundaria);
+}
+
+.card-eletricista:hover .card-icone {
+    background-color: var(--cor-secundaria);
+    color: #493200;
+}
+
+.card-eletricista:hover .card-seta {
+    color: #b17800;
+}
+
+
+/* =========================================================
+   11. DIFERENCIAIS
+   ========================================================= */
+
+.secao-diferenciais {
+    margin-bottom: 62px;
+    padding: 42px;
+    border-radius: var(--raio-grande);
+    background-color: var(--cor-branca);
+    box-shadow: var(--sombra-suave);
+}
+
+.lista-diferenciais {
+    max-width: 780px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    margin: 0 auto;
+}
+
+.diferencial {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px;
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio-medio);
+    background-color: var(--cor-fundo-claro);
+}
+
+.diferencial i {
+    margin-top: 3px;
+    color: var(--cor-sucesso);
+    font-size: 1.05rem;
+}
+
+.diferencial span {
+    color: var(--cor-texto);
+    font-size: 0.84rem;
+    font-weight: 500;
+    line-height: 1.55;
+}
+
+
+/* =========================================================
+   12. FAQ
+   ========================================================= */
+
+.secao-faq {
+    max-width: 850px;
+    margin: 0 auto 62px;
+}
+
+.secao-faq details {
+    margin-bottom: 11px;
+    overflow: hidden;
+    border: 1px solid var(--cor-borda);
+    border-radius: 14px;
+    background-color: var(--cor-branca);
+    box-shadow: 0 4px 13px rgba(28, 43, 64, 0.04);
+    transition:
+        border-color var(--transicao),
+        box-shadow var(--transicao);
+}
+
+.secao-faq details:hover {
+    border-color: rgba(0, 86, 179, 0.26);
+}
+
+.secao-faq details[open] {
+    border-color: rgba(0, 86, 179, 0.3);
+    box-shadow: var(--sombra-suave);
+}
+
+.secao-faq summary {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 19px 54px 19px 21px;
+    color: var(--cor-titulo);
+    font-size: 0.9rem;
+    font-weight: 700;
+    list-style: none;
+    cursor: pointer;
+    user-select: none;
+}
+
+.secao-faq summary::-webkit-details-marker {
+    display: none;
+}
+
+.secao-faq summary::after {
+    content: "+";
+    position: absolute;
+    top: 50%;
+    right: 21px;
+    width: 27px;
+    height: 27px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background-color: var(--cor-primaria-clara);
+    color: var(--cor-primaria);
+    font-size: 1.1rem;
+    font-weight: 600;
+    transform: translateY(-50%);
+    transition:
+        transform var(--transicao),
+        background-color var(--transicao),
+        color var(--transicao);
+}
+
+.secao-faq details[open] summary::after {
+    content: "−";
+    background-color: var(--cor-primaria);
+    color: var(--cor-branca);
+    transform: translateY(-50%) rotate(180deg);
+}
+
+.secao-faq details p {
+    padding: 0 21px 20px;
+    color: var(--cor-texto-secundario);
+    font-size: 0.84rem;
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   13. CHAMADA FINAL
+   ========================================================= */
+
+.chamada-final {
+    position: relative;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 35px;
+    padding: 34px;
+    border-radius: var(--raio-grande);
+    background:
+        linear-gradient(
+            135deg,
+            #10243d,
+            #0056b3
+        );
+    color: var(--cor-branca);
+    box-shadow: var(--sombra-media);
+}
+
+.chamada-final::after {
+    content: "";
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    top: -110px;
+    right: 120px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.06);
+}
+
+.chamada-final > * {
+    position: relative;
+    z-index: 1;
+}
+
+.chamada-final-icone {
+    width: 66px;
+    height: 66px;
+    display: grid;
+    place-items: center;
+    border-radius: 19px;
+    background-color: rgba(255, 255, 255, 0.13);
+    color: var(--cor-secundaria);
+    font-size: 1.7rem;
+}
+
+.chamada-final span {
+    display: block;
+    margin-bottom: 4px;
+    color: var(--cor-secundaria);
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.chamada-final h2 {
+    margin-bottom: 5px;
+    color: var(--cor-branca);
+    font-size: clamp(1.35rem, 3vw, 1.9rem);
+    line-height: 1.25;
+}
+
+.chamada-final p {
+    color: rgba(255, 255, 255, 0.76);
+    font-size: 0.85rem;
+}
+
+
+/* =========================================================
+   14. RODAPÉ
+   ========================================================= */
+
+.footer-contato {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px 20px 10px;
+    text-align: center;
+}
+
+.footer-logo {
+    width: 165px;
+    margin-bottom: 15px;
+    object-fit: contain;
+}
+
+.footer-contato > p:not(.footer-direitos) {
+    max-width: 570px;
+    margin-bottom: 13px;
+    color: var(--cor-texto-secundario);
+    font-size: 0.82rem;
+}
+
+.footer-telefone {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 22px;
+    color: var(--cor-primaria);
+    font-size: 0.92rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition:
+        color var(--transicao),
+        transform var(--transicao);
+}
+
+.footer-telefone:hover {
+    color: var(--cor-primaria-escura);
+    transform: translateY(-1px);
+}
+
+.footer-direitos {
+    width: 100%;
+    padding-top: 20px;
+    border-top: 1px solid var(--cor-borda);
+    color: #8a94a1;
+    font-size: 0.72rem;
+}
+
+
+/* =========================================================
+   15. BOTÃO FLUTUANTE DO WHATSAPP
+   ========================================================= */
+
+.whatsapp-flutuante {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    z-index: 1000;
+    width: 61px;
+    height: 61px;
+    display: grid;
+    place-items: center;
+    border: 3px solid var(--cor-branca);
+    border-radius: 50%;
+    background-color: var(--cor-whatsapp);
+    color: var(--cor-branca);
+    text-decoration: none;
+    font-size: 1.8rem;
+    box-shadow: 0 12px 30px rgba(18, 140, 126, 0.37);
+    transition:
+        background-color var(--transicao),
+        transform var(--transicao),
+        box-shadow var(--transicao);
+    animation: pulso-whatsapp 2.4s infinite;
+}
+
+.whatsapp-flutuante:hover {
+    background-color: var(--cor-whatsapp-escura);
+    color: var(--cor-branca);
+    transform: translateY(-4px) scale(1.04);
+    box-shadow: 0 17px 38px rgba(18, 140, 126, 0.46);
+}
+
+.whatsapp-flutuante:focus-visible {
+    outline: 4px solid rgba(37, 211, 102, 0.27);
+    outline-offset: 4px;
+}
+
+@keyframes pulso-whatsapp {
+    0% {
+        box-shadow:
+            0 12px 30px rgba(18, 140, 126, 0.37),
+            0 0 0 0 rgba(37, 211, 102, 0.32);
+    }
+
+    65% {
+        box-shadow:
+            0 12px 30px rgba(18, 140, 126, 0.37),
+            0 0 0 13px rgba(37, 211, 102, 0);
+    }
+
+    100% {
+        box-shadow:
+            0 12px 30px rgba(18, 140, 126, 0.37),
+            0 0 0 0 rgba(37, 211, 102, 0);
+    }
+}
+
+
+/* =========================================================
+   16. FORMULÁRIOS DAS OUTRAS PÁGINAS
+   Mantém compatibilidade com as páginas antigas
+   ========================================================= */
+
+.container,
+.container-form {
+    width: min(92%, 480px);
+    margin: 25px auto;
+}
 
 .container-form {
-    background: #fff;
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    width: 100%;
-    max-width: 450px;
-    margin: 20px;
+    padding: 28px;
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio-grande);
+    background-color: var(--cor-branca);
+    box-shadow: var(--sombra-media);
+}
+
+.container-form h1,
+.container-form h2,
+.container h1,
+.container h2 {
+    margin-bottom: 20px;
+    color: var(--cor-titulo);
+    font-size: clamp(1.55rem, 4vw, 2rem);
+    line-height: 1.25;
+    text-align: center;
 }
 
 form {
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    text-align: left;
+    gap: 16px;
 }
 
 form label {
-    font-size: 0.9rem;
-    color: #666;
-    margin-bottom: -10px;
-}
-
-input, select {
-    padding: 12px;
-    border: 2px solid #ddd;
-    border-radius: 10px;
-    font-family: 'Poppins', sans-serif;
-    outline: none;
-}
-
-input:focus {
-    border-color: #0056b3;
-}
-
-.row {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 10px;
-}
-
-#btnEnviar {
-    background-color: #0056b3;
-    color: white;
-    border: none;
-    padding: 15px;
-    border-radius: 10px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-#btnEnviar:hover {
-    background-color: #003d7a;
-}
-
-#status {
-    margin-top: 15px;
-    font-size: 0.9rem;
-}
-
-/* Ultimo codigo */
-
-/* --- Ajustes Globais --- */
-body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Poppins', sans-serif;
-    background-color: #f4f7f6; /* Um cinza bem leve para destacar o card branco */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-}
-
-/* --- Ajuste no Título (Diminui em telas menores) --- */
-h2 {
-    color: #333;
-    font-size: 1.8rem; /* Reduzido de 2.5rem para caber melhor */
-    margin-bottom: 15px;
-    font-weight: 600;
-    line-height: 1.2;
-}
-
-/* --- Container do Formulário --- */
-.container-form {
-    background: #fff;
-    padding: 25px;
-    border-radius: 20px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    width: 90%; /* Garante margem nas laterais em celulares */
-    max-width: 450px;
-    margin: 20px auto;
-    box-sizing: border-box; /* Importante para o padding não somar na largura */
-}
-
-/* --- Grid que causava o erro --- */
-.row {
-    display: grid;
-    grid-template-columns: 1fr; /* Por padrão, um embaixo do outro (celular) */
-    gap: 15px;
-}
-
-/* --- Ajuste para o campo de Descrição --- */
-textarea {
-    box-sizing: border-box; /* Garante que o padding não faça ele sair do card */
-}
-
-/* --- MEDIA QUERIES (A mágica da responsividade) --- */
-
-/* Para telas maiores que 480px (Tablets e Desktops) */
-@media (min-width: 480px) {
-    h2 {
-        font-size: 2.2rem;
-    }
-
-    /* No desktop, o CEP/Cidade/UF voltam a ficar na mesma linha */
-    .row {
-        grid-template-columns: 2fr 1fr; 
-    }
-}
-
-/* Ajuste específico para a linha de CEP/Cidade/UF se houver 3 itens */
-.row-triple {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 10px;
-}
-
-
-/* --- Estilos da Nova Home --- */
-
-.container-principal {
-    width: 95%;
-    max-width: 600px; /* Aumentei um pouco para caber os cards lado a lado */
-    margin: 40px auto;
-    padding-bottom: 50px;
-}
-
-.hero-text {
-    margin-bottom: 30px;
-}
-
-.hero-text p {
-    color: #666;
-    font-size: 1rem;
-    margin-top: -10px;
-}
-
-/* Grid de Serviços */
-.grid-servicos {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* Dois cards por linha no desktop */
-    gap: 15px;
-}
-
-/* Estilo do Card */
-.card-btn {
-    text-decoration: none;
-    color: #333;
-    background-color: #fff;
-    padding: 20px 15px;
-    border-radius: 15px;
-    border: 1px solid #eee;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-}
-
-.card-btn i {
-    font-size: 1.8rem;
-    color: #0056b3; /* Cor do seu logo */
-}
-
-.card-btn span {
-    font-size: 0.9rem;
+    display: block;
+    margin-bottom: 6px;
+    color: var(--cor-texto);
+    font-size: 0.8rem;
     font-weight: 600;
 }
 
-/* Efeito Hover */
-.card-btn:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0,86,179,0.1);
-    border-color: #0056b3;
-}
-
-.info{
-    width: 150px;
-}
-
-/*Informatica*/
-
-/* Botão WhatsApp */
-.footer-contato {
-    margin-top: 40px;
-}
-
-.btn-whatsapp {
-    display: inline-block;
-    background-color: #25d366;
-    color: white;
-    text-decoration: none;
-    padding: 12px 25px;
-    border-radius: 30px;
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-.btn-whatsapp:hover {
-    background-color: #128c7e;
-    transform: scale(1.05);
-}
-
-/* Responsividade para Celulares Pequenos */
-@media (max-width: 480px) {
-    .grid-servicos {
-        grid-template-columns: 1fr; /* Volta para um por linha no celular */
-    }
-    
-    .card-btn {
-        flex-direction: row; /* No celular, ícone do lado do texto fica melhor */
-        justify-content: flex-start;
-        padding: 15px 20px;
-    }
-    
-    .card-btn i {
-        font-size: 1.4rem;
-        width: 30px;
-    }
-}
-
-/* Campos dentro das linhas */
-.row > div,
-.row-triple > div {
-    display: flex;
-    flex-direction: column;
-}
-
-/* Linha com 2 campos */
-.row {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 15px;
-}
-
-/* Linha com 3 campos */
-.row-triple {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 15px;
-}
-
-/* Desktop / Tablet */
-@media (min-width: 600px) {
-
-    .row {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .row-triple {
-        grid-template-columns: 1fr 2fr 1fr;
-    }
-
-}
-
+input,
+select,
 textarea {
     width: 100%;
-    padding: 12px;
-    border: 2px solid #ddd;
-    border-radius: 10px;
-    font-family: 'Poppins', sans-serif;
+    min-height: 47px;
+    padding: 11px 13px;
+    border: 1px solid var(--cor-borda-forte);
+    border-radius: var(--raio-pequeno);
+    background-color: var(--cor-branca);
+    color: var(--cor-texto);
+    font-size: 0.88rem;
     outline: none;
+    transition:
+        border-color var(--transicao),
+        box-shadow var(--transicao),
+        background-color var(--transicao);
+}
+
+textarea {
+    min-height: 125px;
     resize: vertical;
 }
 
+input::placeholder,
+textarea::placeholder {
+    color: #a2abb6;
+}
 
-@media (min-width: 480px) {
-    .row-triple {
-        grid-template-columns: 1fr 2fr 1fr; /* CEP, Cidade, UF */
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--cor-primaria);
+    background-color: #fcfdff;
+    box-shadow: 0 0 0 4px rgba(0, 86, 179, 0.1);
+}
+
+.row,
+.row-triple {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+}
+
+.row > div,
+.row-triple > div {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+#btnEnviar,
+.btn {
+    min-height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    padding: 12px 19px;
+    border: 0;
+    border-radius: var(--raio-pequeno);
+    background-color: var(--cor-primaria);
+    color: var(--cor-branca);
+    font-size: 0.88rem;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition:
+        background-color var(--transicao),
+        transform var(--transicao),
+        box-shadow var(--transicao);
+}
+
+#btnEnviar:hover,
+.btn:hover {
+    background-color: var(--cor-primaria-escura);
+    color: var(--cor-branca);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 86, 179, 0.22);
+}
+
+#btnEnviar:disabled {
+    background-color: #a7b3c1;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+#status {
+    margin-top: 12px;
+    color: var(--cor-texto-secundario);
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+.menu-servicos {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+}
+
+.esp {
+    padding: 40px;
+}
+
+.info {
+    width: 140px;
+    max-width: 100%;
+}
+
+
+/* =========================================================
+   17. RESPONSIVIDADE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .hero-text {
+        padding: 42px;
     }
+
+    .beneficios {
+        grid-template-columns: 1fr;
+    }
+
+    .beneficio-item {
+        padding: 17px 19px;
+    }
+
+    .chamada-final {
+        grid-template-columns: auto 1fr;
+    }
+
+    .chamada-final .btn-whatsapp {
+        grid-column: 1 / -1;
+        justify-self: flex-start;
+    }
+
 }
-.esp{
-    
-    padding: 50px;
+
+
+@media (max-width: 720px) {
+
+    .container-principal {
+        width: min(93%, 650px);
+        padding-top: 25px;
+    }
+
+    .hero-text {
+        padding: 34px 27px;
+        border-radius: 20px;
+    }
+
+    .hero-text h1 {
+        font-size: clamp(1.85rem, 9vw, 2.7rem);
+    }
+
+    .hero-text p {
+        font-size: 0.92rem;
+    }
+
+    .hero-acoes {
+        align-items: stretch;
+    }
+
+    .btn-whatsapp,
+    .btn-secundario {
+        flex: 1 1 220px;
+    }
+
+    .destaque-eletrica {
+        grid-template-columns: 1fr;
+        gap: 18px;
+        padding: 28px;
+    }
+
+    .destaque-eletrica-icone {
+        width: 70px;
+        height: 70px;
+        font-size: 1.8rem;
+    }
+
+    .grid-servicos {
+        grid-template-columns: 1fr;
+    }
+
+    .card-btn {
+        min-height: 108px;
+    }
+
+    .secao-diferenciais {
+        padding: 32px 23px;
+    }
+
+    .lista-diferenciais {
+        grid-template-columns: 1fr;
+    }
+
+    .chamada-final {
+        grid-template-columns: 1fr;
+        padding: 29px 24px;
+    }
+
+    .chamada-final-icone {
+        width: 58px;
+        height: 58px;
+    }
+
+    .chamada-final .btn-whatsapp {
+        width: 100%;
+        justify-self: stretch;
+    }
+
 }
+
+
+@media (min-width: 600px) {
+
+    .row {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .row-triple {
+        grid-template-columns: 1fr 2fr 0.7fr;
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    .container-principal {
+        width: 92%;
+        padding-top: 20px;
+        padding-bottom: 65px;
+    }
+
+    .logo {
+        margin-bottom: 20px;
+    }
+
+    .logo img {
+        width: 220px;
+    }
+
+    .hero-text {
+        padding: 29px 21px;
+    }
+
+    .hero-etiqueta {
+        padding: 7px 11px;
+        font-size: 0.68rem;
+        line-height: 1.4;
+    }
+
+    .hero-text h1 {
+        margin-bottom: 15px;
+        font-size: 2rem;
+        line-height: 1.15;
+    }
+
+    .hero-text p {
+        font-size: 0.84rem;
+    }
+
+    .hero-acoes {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    .btn-whatsapp,
+    .btn-secundario {
+        width: 100%;
+        min-height: 49px;
+        padding: 12px 16px;
+        font-size: 0.84rem;
+    }
+
+    .beneficios {
+        margin-bottom: 42px;
+    }
+
+    .beneficio-item {
+        gap: 12px;
+        padding: 15px;
+    }
+
+    .beneficio-item > i {
+        width: 44px;
+        height: 44px;
+        font-size: 1.05rem;
+    }
+
+    .destaque-eletrica {
+        margin-bottom: 50px;
+        padding: 23px 20px;
+        border-radius: 19px;
+    }
+
+    .destaque-eletrica h2 {
+        font-size: 1.55rem;
+    }
+
+    .destaque-eletrica p {
+        font-size: 0.82rem;
+    }
+
+    .titulo-secao {
+        margin-bottom: 23px;
+    }
+
+    .titulo-secao h2 {
+        font-size: 1.65rem;
+    }
+
+    .titulo-secao p {
+        font-size: 0.81rem;
+    }
+
+    .card-btn {
+        min-height: 98px;
+        gap: 12px;
+        padding: 16px;
+        border-radius: 14px;
+    }
+
+    .card-icone {
+        width: 48px;
+        height: 48px;
+        border-radius: 13px;
+        font-size: 1.15rem;
+    }
+
+    .card-conteudo span {
+        font-size: 0.82rem;
+    }
+
+    .card-conteudo small {
+        font-size: 0.68rem;
+    }
+
+    .secao-diferenciais {
+        padding: 28px 18px;
+        border-radius: 19px;
+    }
+
+    .diferencial {
+        padding: 14px;
+    }
+
+    .diferencial span {
+        font-size: 0.77rem;
+    }
+
+    .secao-faq summary {
+        padding: 17px 49px 17px 17px;
+        font-size: 0.8rem;
+    }
+
+    .secao-faq summary::after {
+        right: 16px;
+    }
+
+    .secao-faq details p {
+        padding: 0 17px 17px;
+        font-size: 0.76rem;
+    }
+
+    .chamada-final {
+        padding: 25px 20px;
+        border-radius: 19px;
+    }
+
+    .chamada-final h2 {
+        font-size: 1.4rem;
+    }
+
+    .chamada-final p {
+        font-size: 0.78rem;
+    }
+
+    .footer-contato {
+        padding-inline: 10px;
+    }
+
+    .footer-logo {
+        width: 145px;
+    }
+
+    .whatsapp-flutuante {
+        right: 15px;
+        bottom: 15px;
+        width: 56px;
+        height: 56px;
+        font-size: 1.6rem;
+    }
+
+    .container-form {
+        width: 93%;
+        padding: 22px 18px;
+        border-radius: 18px;
+    }
+
+    .esp {
+        padding: 20px;
+    }
+
+}
+
+
+/* =========================================================
+   18. ACESSIBILIDADE E REDUÇÃO DE MOVIMENTO
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+}
+
+
+/* =========================================================
+   19. IMPRESSÃO
+   ========================================================= */
+
+@media print {
+
+    body {
+        background: var(--cor-branca);
+    }
+
+    .whatsapp-flutuante,
+    .hero-acoes,
+    .chamada-final .btn-whatsapp {
+        display: none !important;
+    }
+
+    .hero-text,
+    .chamada-final {
+        background: var(--cor-branca) !important;
+        color: var(--cor-texto) !important;
+        box-shadow: none;
+        border: 1px solid var(--cor-borda);
+    }
+
+    .hero-text h1,
+    .hero-text p,
+    .chamada-final h2,
+    .chamada-final p {
+        color: var(--cor-texto) !important;
+    }
+
+}
+```
